@@ -46,7 +46,7 @@ set wildmenu                  " menu has tab completion
 let maplocalleader=','        " all my macros start with ,
 " Deprecated, using SimpleFold with '\f' now. ,sf to revert
 "set foldmethod=syntax         " fold on syntax automagically, always
-set foldcolumn=2              " 2 lines of column for fold showing, always
+set foldcolumn=4              " 4 lines of column for fold showing, always
 set whichwrap+=<,>,h,l        " backspaces and cursor keys wrap to
 set magic                     " Enable the "magic"
 set visualbell t_vb=          " Disable ALL bells
@@ -89,9 +89,9 @@ if has("gui_running")
       set guioptions-=R        " no right scrollbar
       set lines=64
       set columns=135
-      set transparency=0
-      set gfn=Monaco:h9.0
-      set clipboard=unnamed
+      "set transparency=0
+      set gfn=LiberationMono\ 8
+      "set clipboard=unnamed
 end
 
 if exists('&t_SI')
@@ -128,13 +128,13 @@ let use_xhtml=1
 let g:vimclojure#HighlightBuiltins=1   " Highlight Clojure's builtins
 let g:vimclojure#ParenRainbow=1        " Rainbow parentheses'!
 let g:vimclojure#DynamicHighlighting=1 " Dynamically highlight functions
-let vimclojure#NailgunClient="/Users/hinmanm/bin/ng" " Nailgun location
+let vimclojure#NailgunClient="/home/hinmanm/bin/ng" " Nailgun location
 let vimclojure#WantNailgun=1
 let vimclojure#SplitPos = "right"
 "let g:clj_want_gorilla=1            " Bananas! (Make sure nailgun in is your path)
 
 " Settings for yankring
-let g:yankring_history_dir="/Users/hinmanm/.vim/"
+let g:yankring_history_dir="/home/hinmanm/.vim/"
 let g:yankring_history_file="yank.txt"
 
 " Settings for twitvim
@@ -250,7 +250,7 @@ let g:localvimrc_count=2
 let g:easytags_file = '~/.vtags'
 " tag-related keybinds:
 " open tag in new tab
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+"map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 " open tag in split with ,\
 map <LocalLeader>\ :split <CR>:exec("tag ".expand("<cword>"))<CR>
 " open tag in vsplit with ,]
@@ -410,37 +410,37 @@ iab rbang #!/usr/bin/env ruby -w<cr> encoding: UTF-8<cr>
 " For mac users (using the 'apple' key)
 "map <D-S-]> gt " MacVim already does this
 "map <D-S-[> gT " MacVim already does this
-map <D-1> 1gt
-map <D-2> 2gt
-map <D-3> 3gt
-map <D-4> 4gt
-map <D-5> 5gt
-map <D-6> 6gt
-map <D-7> 7gt
-map <D-8> 8gt
-map <D-9> 9gt
-map <D-0> :tablast<CR>
+"map <D-1> 1gt
+"map <D-2> 2gt
+"map <D-3> 3gt
+"map <D-4> 4gt
+"map <D-5> 5gt
+"map <D-6> 6gt
+"map <D-7> 7gt
+"map <D-8> 8gt
+"map <D-9> 9gt
+"map <D-0> :tablast<CR>
  
 " Command + movement for wrapped lines.
-vmap <D-j> gj
-vmap <D-k> gk
+"vmap <D-j> gj
+"vmap <D-k> gk
 "vmap <D-4> g$
-vmap <D-6> g^
-vmap <D-0> g^
+"vmap <D-6> g^
+"vmap <D-0> g^
 
 " for linux and windows users (using the control key)
-"map <C-S-]> gt
-"map <C-S-[> gT
-"map <C-1> 1gt
-"map <C-2> 2gt
-"map <C-3> 3gt
-"map <C-4> 4gt
-"map <C-5> 5gt
-"map <C-6> 6gt
-"map <C-7> 7gt
-"map <C-8> 8gt
-"map <C-9> 9gt
-"map <C-0> :tablast<CR>
+map <C-S-]> gt
+map <C-S-[> gT
+map <C-1> 1gt
+map <C-2> 2gt
+map <C-3> 3gt
+map <C-4> 4gt
+map <C-5> 5gt
+map <C-6> 6gt
+map <C-7> 7gt
+map <C-8> 8gt
+map <C-9> 9gt
+map <C-0> :tablast<CR>
 
 
 " Compile Ruby code after writing (show warnings/errors)

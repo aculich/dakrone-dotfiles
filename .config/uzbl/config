@@ -259,8 +259,8 @@ set ebind     = @mode_bind global,-insert
 
 # Mode setting binds
 @cbind  i        = @set_mode insert
-@bind   <Ctrl>i  = @set_mode insert
-@bind   <Ctrl>z  = @set_mode insert
+@cbind <Ctrl>i   = @set_mode insert
+@cbind <Ctrl>z   = @set_mode insert
 
 # Hard-bound bookmarks
 #@cbind  gh  = uri http://www.uzbl.org

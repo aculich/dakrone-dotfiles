@@ -19,17 +19,24 @@ export PATH=$PATH:~/.gem/ruby/1.8/bin
 export PATH=$PATH:~/.gem/ruby/1.9/bin
 # Path for git
 #export PATH=$PATH:/usr/local/git/bin
+# Path for liebke's cljr - http://github.com/liebke/cljr
+export PATH=/home/hinmanm/.cljr/bin:$PATH
+# Path for java
+export PATH=/home/hinmanm/opt/jdk1.6.0_20/bin:$PATH
 
 # Chris' ruby stuff
 export RUBYLIB=~/src/chrisbin/ruby
 export RUBYOPT=rubygems
 export PATH=$PATH:~/src/chrisbin:~/src/chrisbin/ruby
 
-# I'm using java 1.6 on OSX
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
+# I'm using java 1.6 on Linux
+export JAVA_HOME=/home/hinmanm/opt/jdk1.6.0_20
+export M2_HOME=/home/hinmanm/opt/apache-maven-2.2.1
+export M2=$M2_HOME/bin
+export PATH=$M2:$PATH
 
 # VimClojure stuff (for nailgun server)
-export CLOJURE_EXT=/Users/hinmanm/.clojure:./lib:./classes:./src:.
+export CLOJURE_EXT=/home/hinmanm/.clojure:./lib:./classes:./src:.
 export CLOJURE_OPTS="-server -Xmx1024m -XX:+UseConcMarkSweepGC -XX:+HeapDumpOnOutOfMemoryError"
 
 # manpath
@@ -45,7 +52,7 @@ export PAGER=less
 # CVS for Avamar
 export CVSROOT=:ext:hinmam@cvs.avamar.com:/antimatter/home/codebase/repository
 export CVS_RSH=ssh
-export CVS_SERVER=/opt/sfw/bin/cvs
+#export CVS_SERVER=/opt/sfw/bin/cvs
 export CVSEDITOR=vim
 
 
@@ -72,7 +79,7 @@ export IRBRC=~/.irbrc
 # Perforce
 export P4PORT=137.69.227.201:1666
 export P4USER=hinmam
-export P4CLIENT=hinmam_Xanadu
+export P4CLIENT=hinmam_dagger
 export P4DIFF=colordiff
 
 # Term settings, if we exist as a screen term, use xterm-color instead of screen-bce.
@@ -134,7 +141,7 @@ alias cspec='spec -c --format specdoc'
 # Tmux stuff
 # force 256 color mode
 alias tmux='tmux -2'
-alias screen='TERM=xterm-color && /opt/local/bin/screen'
+alias screen='TERM=xterm-color && screen'
 alias rvim='gvim --remote-tab-silent'
 alias todo='rvim ~/vimwiki/ToDo.wiki'
 
@@ -175,7 +182,8 @@ function pdesc() {
 #else
     # [hinmanm@dagger:~]% 
     #export PS1="%{$fg[blue]%}[%{$fg[green]%}%n%{$fg[cyan]%}@%{$fg[green]%}%m%{$fg[blue]%}:%{$fg[magenta]%}%~%{$fg[blue]%}]%{$reset_color%}%# "
-    export PS1="%{$fg[grey]%}‹ %{$fg[blue]%}%~%{$fg[grey]%} › %{$fg[green]%}∴%{$reset_color%} "
+    #export PS1="%{$fg[grey]%}‹ %{$fg[blue]%}%~%{$fg[grey]%} › %{$fg[green]%}∴%{$reset_color%} "
+    export PS1="%{$fg[grey]%} %{$fg[blue]%}%~%{$fg[grey]%} %{$fg[green]%}∴%{$reset_color%}  "
 #fi
 export RPRMOPT="%{$reset_color%}"
 
@@ -224,15 +232,15 @@ function zg () {
 }
 
 # Make w/growl support
-function gmake () {
-  DIR=`pwd`
-  make $1 $2 $3 $4 $5 $6 $7 $8 $9
-  if [[ $? == 0 ]]; then
-    growlnotify -m "'make $1' successful in $DIR" 
-  else
-    growlnotify -m "'make $1' failed in $DIR" 
-  fi
-}
+#function gmake () {
+  #DIR=`pwd`
+  #make $1 $2 $3 $4 $5 $6 $7 $8 $9
+  #if [[ $? == 0 ]]; then
+    #growlnotify -m "'make $1' successful in $DIR" 
+  #else
+    #growlnotify -m "'make $1' failed in $DIR" 
+  #fi
+#}
 
 # Configure w/growl support
 function gconf () {
@@ -279,4 +287,4 @@ bindkey ' ' magic-space    # also do history expansion on space
 bindkey '^I' complete-word # complete on tab, leave expansion to _expand
 
 # Remove ctrl+y from the keybinds for delayed suspend
-stty dsusp undef
+#stty dsusp undef
