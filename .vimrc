@@ -82,6 +82,7 @@ if has("gui_running")
       let rdark_current_line=1  " highlight current line
       set background=dark
       set noantialias
+      set guioptions-=m        " no menubar on Linux
       set guioptions-=T        " no toolbar
       set guioptions-=l        " no left scrollbar
       set guioptions-=L        " no left scrollbar
@@ -441,6 +442,17 @@ map <C-7> 7gt
 map <C-8> 8gt
 map <C-9> 9gt
 map <C-0> :tablast<CR>
+
+" cross-platform Vimperator-like behavior:
+nmap b1 1gt
+nmap b2 2gt
+nmap b3 3gt
+nmap b4 4gt
+nmap b5 5gt
+nmap b6 6gt
+nmap b7 7gt
+nmap b8 8gt
+nmap b9 9gt
 
 
 " Compile Ruby code after writing (show warnings/errors)
