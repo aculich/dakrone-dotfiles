@@ -36,7 +36,7 @@ export M2=$M2_HOME/bin
 export PATH=$M2:$PATH
 
 # VimClojure stuff (for nailgun server)
-export CLOJURE_EXT=/home/hinmanm/.clojure:./lib:./classes:./src:.
+export CLOJURE_EXT=/home/hinmanm/.cljr/lib:./lib:./classes:./src:.
 export CLOJURE_OPTS="-server -Xmx1024m -XX:+UseConcMarkSweepGC -XX:+HeapDumpOnOutOfMemoryError"
 
 # manpath
@@ -288,3 +288,15 @@ bindkey '^I' complete-word # complete on tab, leave expansion to _expand
 
 # Remove ctrl+y from the keybinds for delayed suspend
 #stty dsusp undef
+
+# Fix some emacs stuff
+if [[ "$TERM" == "dumb" ]]
+then
+  unsetopt zle
+  unsetopt prompt_cr
+  unsetopt prompt_subst
+  unfunction precmd
+  unfunction preexec
+  PS1="%~% %{$fg[green]%} ∴%{$reset_color%}  "
+fi
+

@@ -55,6 +55,8 @@ set matchpairs+=<:>           " add < and > to match pairs
 "set tags=tags;/               " search recursively up for tags
 set tags=~/.vtags,tags        " tag filenames
 
+" For a while, I'm disabling yankrink
+let g:loaded_yankring = 1
 
 " Use 'par' (sudo port install par) to format paragraphs with a width of 80
 set formatprg=par\ -w80
@@ -67,6 +69,10 @@ match OverLength /\%81v.*/
 set dictionary=/usr/share/dict/words " more words!
 
 if !has("gui_running")
+      set t_Co=256
+      "set t_Co=88
+      let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
+
       "colorscheme candycode   " yum candy
 
       " I pretty much only like this scheme if I can use SIMBL with terminal
@@ -181,8 +187,8 @@ let g:SuperTabLongestHighlight = 1
 " Gist.vim settings (http://www.vim.org/scripts/script.php?script_id=2423)
 let g:gist_open_browser_after_post = 1
 " Mac-specific
-let g:gist_browser_command = 'open %URL%'
-let g:gist_clip_command = 'pbcopy'
+let g:gist_browser_command = 'firefox -new-tab %URL%'
+let g:gist_clip_command = 'xclip'
 
 " SimpleFold settings
 " This doesn't work yet.
@@ -251,7 +257,7 @@ let g:localvimrc_count=2
 let g:easytags_file = '~/.vtags'
 " tag-related keybinds:
 " open tag in new tab
-"map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <C-=> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 " open tag in split with ,\
 map <LocalLeader>\ :split <CR>:exec("tag ".expand("<cword>"))<CR>
 " open tag in vsplit with ,]
@@ -453,6 +459,8 @@ nmap b6 6gt
 nmap b7 7gt
 nmap b8 8gt
 nmap b9 9gt
+nmap <C-p> :tabprev<CR>
+nmap <C-n> :tabnext<CR>
 
 
 " Compile Ruby code after writing (show warnings/errors)
