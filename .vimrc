@@ -55,8 +55,10 @@ set matchpairs+=<:>           " add < and > to match pairs
 "set tags=tags;/               " search recursively up for tags
 set tags=~/.vtags,tags        " tag filenames
 
-" For a while, I'm disabling yankrink
+" disable yankring for now
 let g:loaded_yankring = 1
+" disable paredit for now
+let g:paredit_mode = 0
 
 " Use 'par' (sudo port install par) to format paragraphs with a width of 80
 set formatprg=par\ -w80
@@ -69,10 +71,6 @@ match OverLength /\%81v.*/
 set dictionary=/usr/share/dict/words " more words!
 
 if !has("gui_running")
-      set t_Co=256
-      "set t_Co=88
-      let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
-
       "colorscheme candycode   " yum candy
 
       " I pretty much only like this scheme if I can use SIMBL with terminal
@@ -80,15 +78,15 @@ if !has("gui_running")
       " (http://www.culater.net/software/TerminalColors/TerminalColors.php)
       " to change the really hard-to-read dark blue into a lighter shade.
       " Or; Use iterm with Tango colors
-      colorscheme Mustang
+      "colorscheme Mustang
       "colorscheme rdark
+      colorscheme ir_black_new
 end
 if has("gui_running")
       colorscheme rdark
       let rdark_current_line=1  " highlight current line
       set background=dark
       set noantialias
-      set guioptions-=m        " no menubar on Linux
       set guioptions-=T        " no toolbar
       set guioptions-=l        " no left scrollbar
       set guioptions-=L        " no left scrollbar
@@ -96,9 +94,9 @@ if has("gui_running")
       set guioptions-=R        " no right scrollbar
       set lines=64
       set columns=135
-      "set transparency=0
-      set gfn=LiberationMono\ 8
-      "set clipboard=unnamed
+      set transparency=0
+      set gfn=Monaco:h9.0
+      set clipboard=unnamed
 end
 
 if exists('&t_SI')
@@ -135,13 +133,13 @@ let use_xhtml=1
 let g:vimclojure#HighlightBuiltins=1   " Highlight Clojure's builtins
 let g:vimclojure#ParenRainbow=1        " Rainbow parentheses'!
 let g:vimclojure#DynamicHighlighting=1 " Dynamically highlight functions
-let vimclojure#NailgunClient="/home/hinmanm/bin/ng" " Nailgun location
+let vimclojure#NailgunClient="/Users/hinmanm/bin/ng" " Nailgun location
 let vimclojure#WantNailgun=1
 let vimclojure#SplitPos = "right"
 "let g:clj_want_gorilla=1            " Bananas! (Make sure nailgun in is your path)
 
 " Settings for yankring
-let g:yankring_history_dir="/home/hinmanm/.vim/"
+let g:yankring_history_dir="/Users/hinmanm/.vim/"
 let g:yankring_history_file="yank.txt"
 
 " Settings for twitvim
@@ -187,8 +185,8 @@ let g:SuperTabLongestHighlight = 1
 " Gist.vim settings (http://www.vim.org/scripts/script.php?script_id=2423)
 let g:gist_open_browser_after_post = 1
 " Mac-specific
-let g:gist_browser_command = 'firefox -new-tab %URL%'
-let g:gist_clip_command = 'xclip'
+let g:gist_browser_command = 'open %URL%'
+let g:gist_clip_command = 'pbcopy'
 
 " SimpleFold settings
 " This doesn't work yet.
@@ -257,7 +255,7 @@ let g:localvimrc_count=2
 let g:easytags_file = '~/.vtags'
 " tag-related keybinds:
 " open tag in new tab
-map <C-=> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 " open tag in split with ,\
 map <LocalLeader>\ :split <CR>:exec("tag ".expand("<cword>"))<CR>
 " open tag in vsplit with ,]
@@ -377,7 +375,8 @@ endfunction
 " toggle list mode
 nmap <LocalLeader>tl :set list!<cr>
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬,trail:-
+"set listchars=tab:▸\ ,eol:¬,trail:-
+set listchars=eol:\ ,tab:»-,trail:·,precedes:…,extends:…,nbsp:‗
 " toggle paste mode
 nmap <LocalLeader>pm :set paste!<cr>
 " toggle wrapping
@@ -417,39 +416,41 @@ iab rbang #!/usr/bin/env ruby -w<cr> encoding: UTF-8<cr>
 " For mac users (using the 'apple' key)
 "map <D-S-]> gt " MacVim already does this
 "map <D-S-[> gT " MacVim already does this
-"map <D-1> 1gt
-"map <D-2> 2gt
-"map <D-3> 3gt
-"map <D-4> 4gt
-"map <D-5> 5gt
-"map <D-6> 6gt
-"map <D-7> 7gt
-"map <D-8> 8gt
-"map <D-9> 9gt
-"map <D-0> :tablast<CR>
+map <D-1> 1gt
+map <D-2> 2gt
+map <D-3> 3gt
+map <D-4> 4gt
+map <D-5> 5gt
+map <D-6> 6gt
+map <D-7> 7gt
+map <D-8> 8gt
+map <D-9> 9gt
+map <D-0> :tablast<CR>
+map <C-p> :tabprev<CR>
+map <C-n> :tabnext<CR>
  
 " Command + movement for wrapped lines.
-"vmap <D-j> gj
-"vmap <D-k> gk
+vmap <D-j> gj
+vmap <D-k> gk
 "vmap <D-4> g$
-"vmap <D-6> g^
-"vmap <D-0> g^
+vmap <D-6> g^
+vmap <D-0> g^
 
 " for linux and windows users (using the control key)
-map <C-S-]> gt
-map <C-S-[> gT
-map <C-1> 1gt
-map <C-2> 2gt
-map <C-3> 3gt
-map <C-4> 4gt
-map <C-5> 5gt
-map <C-6> 6gt
-map <C-7> 7gt
-map <C-8> 8gt
-map <C-9> 9gt
-map <C-0> :tablast<CR>
+"map <C-S-]> gt
+"map <C-S-[> gT
+"map <C-1> 1gt
+"map <C-2> 2gt
+"map <C-3> 3gt
+"map <C-4> 4gt
+"map <C-5> 5gt
+"map <C-6> 6gt
+"map <C-7> 7gt
+"map <C-8> 8gt
+"map <C-9> 9gt
+"map <C-0> :tablast<CR>
 
-" cross-platform Vimperator-like behavior:
+" Vimperator-like bindings for a tab switches.
 nmap b1 1gt
 nmap b2 2gt
 nmap b3 3gt
@@ -459,9 +460,6 @@ nmap b6 6gt
 nmap b7 7gt
 nmap b8 8gt
 nmap b9 9gt
-nmap <C-p> :tabprev<CR>
-nmap <C-n> :tabnext<CR>
-
 
 " Compile Ruby code after writing (show warnings/errors)
 function! Compile()
